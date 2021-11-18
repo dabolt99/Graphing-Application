@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.funcInfoController">
+   <children>
+      <Text layoutX="71.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X Intercept:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="72.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Y Intercept:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="134.0" layoutY="351.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X =">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="134.0" layoutY="401.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Y =">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtXEquals" layoutX="170.0" layoutY="325.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtYEquals" layoutX="170.0" layoutY="374.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <Label fx:id="lblXInter" layoutX="170.0" layoutY="231.0" text="L">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblYInter" layoutX="170.0" layoutY="280.0" text="L">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Text layoutX="40.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Function Info">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Text>
+      <Button fx:id="btnGotoGraph" layoutX="525.0" layoutY="39.0" mnemonicParsing="false" onMouseClicked="#switchGraph" text="Back to Graph View">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Text fx:id="txtFunction" layoutX="125.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Button fx:id="btnSolveVal" layoutX="167.0" layoutY="429.0" mnemonicParsing="false" onMouseClicked="#solveVal" text="Solve for x or y given the other&#10;Leave field to solve for blank" />
+   </children>
+</AnchorPane>

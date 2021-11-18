@@ -1,4 +1,4 @@
-package application;
+package application.controller;
 
 import java.io.IOException;
 
@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 
 		@FXML
 		void switchCalculator(MouseEvent event) throws IOException {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("view/regCalc.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("view/regCalc.fxml"));
 	    	Parent root = loader.load();
 	    	
 	        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();

@@ -1,4 +1,4 @@
-package application;
+package application.controller;
 
 import java.io.IOException;
 
@@ -6,6 +6,7 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
+import application.model.Function;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -67,7 +68,7 @@ public class graphController {
 
     @FXML
     void switchCalc(MouseEvent event) throws IOException {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("view/regCalc.fxml"));
+    	FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("view/regCalc.fxml"));
     	Parent root = loader.load();
     	
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -83,7 +84,7 @@ public class graphController {
     	// also need the x and ys to get calculated
     	
     	
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("view/funcInfo.fxml"));
+    	FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("view/funcInfo.fxml"));
     	Parent root = loader.load();
     	
     	//calling the manual initialization and giving it Function obj

@@ -1,4 +1,4 @@
-package application;
+package application.model;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
@@ -17,7 +17,7 @@ public class Function {
 	private double xInt, yInt;
 	
 	//constructor
-	Function(String input){
+	public Function(String input){
 		
 		System.out.println("Function constructor called");
 		
@@ -78,31 +78,31 @@ public class Function {
 	}
 	
 	
-	void setFunction(String input) {
+	public void setFunction(String input) {
 		rawFunction = input;
 	}
 	
-	void setXInt(double input) {
+	public void setXInt(double input) {
 		xInt = input;
 	}
 	
-	void setYInt(double input) {
+	public void setYInt(double input) {
 		yInt = input;
 	}
 	
-	String getFunction() {
+	public String getFunction() {
 		return rawFunction;
 	}
 	
-	String getEquation() {
+	public String getEquation() {
 		return equation;
 	}
 	
-	double getXInt() {
+	public double getXInt() {
 		return xInt;
 	}
 	
-	double getYInt() {
+	public double getYInt() {
 		return yInt;
 	}	
 

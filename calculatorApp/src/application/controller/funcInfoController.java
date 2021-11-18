@@ -1,9 +1,10 @@
-package application;
+package application.controller;
 
 import java.io.IOException;
 
 import javax.script.ScriptException;
 
+import application.model.Function;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -75,7 +76,7 @@ public class funcInfoController {
 
     @FXML
     void switchGraph(MouseEvent event) throws IOException {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("view/graph.fxml"));
+    	FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("view/graph.fxml"));
     	Parent root = loader.load();
     	
     	//calling the manual initialization and giving it Function obj
