@@ -1,0 +1,23 @@
+Gonna use this file for notes to pass between the group
+
+joseph 11/14 ------------
+
+
+
+i spent like an hr trying to get this thing working with seperate model view and controller packages
+	but couldnt get it working so everything is dumped into the application package with a folder to hold the
+	.fxmls. I could not get the main.java to open the fxml when they are called to load when i had things in 
+	diff packages. The url would not work and would be NULL and cause fxml error "Location needed" something like that
+	If someone knows how to set it up all nice and MVC thatd b cool
+	
+	
+
+in the controllers the switch"    "() functions are responsible for changing the views
+
+I set it up to pass a function object between graph view and funcInfo view
+	Function obj has a string to hold the raw user input and two double for the calculated x y intercepts right now
+
+right now theres just blank areas where more complicated shit is supposed to go like the graph and calculator
+	and the fxml are ugly but i think the layout will work in general
+	
+-------------------------
