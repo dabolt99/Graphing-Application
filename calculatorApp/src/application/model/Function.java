@@ -11,11 +11,15 @@ import javax.script.ScriptException;
 //this will be tossed back and forth between graphController and funcInfoController
 //
 //
+// can calculate for cos sin tan log sqrt square e and pi
+// user input must have terms seperated by a basic operator
+// and squares like (5)^(x) - VALID
+// sin(5*cos(3+log(x))) - VALID
 public class Function {
 	
 	//used to hold the user input before evaluating special chars
 	//like 5(3+x) x^5 etc
-	private String rawFunction;
+	private String userInput;
 	private String equation;
 	//function x y interccepts
 	private double xInt, yInt;
@@ -26,34 +30,48 @@ public class Function {
 		System.out.println("Function constructor called");
 		
 		setFunction(input);
-		formatFunction(input);
+		formatFunction();
 		
 		//temporary until the logic for calculating is implemented
 		setXInt(10.66);
 		setYInt(20.77);
 	}
 	
-	private void formatFunction(String input) {
+	private void formatFunction() {
 		
 		
+		equation = userInput;
 		//formats using some regex bits
-		equation = rawFunction.replace("sin", "Math.sin").
-			    replace("tan", "Math.tan").
-			    replace("sqrt", "Math.sqrt").
-			    replace("sqr", "Math.pow").
-			    replace("pi", "Math.PI").
-			    replace("e", "Math.E").
-			    replace("pi", "Math.PI").
-			    replace("pi", "Math.PI").
-			    replace("pi", "Math.PI").
-			    replace("log", "Math.log");
-		
 		//used to handle nesting of cos ex: 5*cos(5*x+cos(5))
 		//".*(?<!Math.)cos\\(([^<]*)\\).*" matches anything up to cos( NOT preceded by 'Math.'
 		//stores inside of ( ) then matches closing ) followed by anything
 		while (equation.matches(".*(?<!Math.)cos\\(([^<]*)\\).*")) {
 			equation = equation.replaceAll("(?<!Math.)cos\\(([^<]*)\\)", "Math.cos($1)");
 		}
+		while (equation.matches(".*(?<!Math.)sin\\(([^<]*)\\).*")) {
+			equation = equation.replaceAll("(?<!Math.)sin\\(([^<]*)\\)", "Math.sin($1)");
+		}
+		while (equation.matches(".*(?<!Math.)tan\\(([^<]*)\\).*")) {
+			equation = equation.replaceAll("(?<!Math.)cos\\(([^<]*)\\)", "Math.tan($1)");
+		}
+		while (equation.matches(".*(?<!Math.)sqrt\\(([^<]*)\\).*")) {
+			equation = equation.replaceAll("(?<!Math.)sqrt\\(([^<]*)\\)", "Math.sqrt($1)");
+		}
+		while (equation.matches(".*(?<!Math.)log\\(([^<]*)\\).*")) {
+			equation = equation.replaceAll("(?<!Math.)log\\(([^<]*)\\)", "Math.log($1)");
+		}
+		//figure out math.pow
+		while (equation.matches(".*\\(([^<]*)\\)\\^\\(([^<]*)\\).*")) {
+			equation = equation.replaceAll(".*\\(([^<]*)\\)\\^\\(([^<]*)\\).*", "Math.pow($1, $2)");
+		}
+		
+		while (equation.matches(".*pi.*")) {
+			equation = equation.replaceAll("pi", "Math.PI");
+		}
+		while (equation.matches(".*e.*")) {
+			equation = equation.replaceAll("e", "Math.E");
+		}
+		System.out.println(equation);
 	}
 	
 	//to be used for user calulating manually will need to have access to the 
@@ -67,6 +85,7 @@ public class Function {
 
 		switch(toSolveFor) {
 		case 'x':
+			//gonna have to use newtons method or something
 			//solve for x given y
 			return 1066;
 		case 'y':
