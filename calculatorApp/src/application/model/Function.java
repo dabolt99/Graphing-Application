@@ -22,10 +22,10 @@ public class Function {
 	private String userInput;
 	private String equation;
 	//function x y interccepts
-	private double xInt, yInt;
+	private double[] xInt = {0, 0, 0};
 	
 	//constructor
-	public Function(String input){
+	public Function(String input) throws ScriptException{
 		
 		System.out.println("Function constructor called");
 		
@@ -33,8 +33,8 @@ public class Function {
 		formatFunction();
 		
 		//temporary until the logic for calculating is implemented
-		setXInt(10.66);
-		setYInt(20.77);
+		setXInt(calculateValues(0, 'x'));
+
 	}
 	
 	private void formatFunction() {
@@ -62,6 +62,7 @@ public class Function {
 		}
 		//figure out math.pow
 		while (equation.matches(".*\\(([^<]*)\\)\\^\\(([^<]*)\\).*")) {
+			System.out.println("mathed pow");
 			equation = equation.replaceAll(".*\\(([^<]*)\\)\\^\\(([^<]*)\\).*", "Math.pow($1, $2)");
 		}
 		
@@ -82,17 +83,73 @@ public class Function {
 		//ScriptEngine created so eval() from javascript can be used to do the math
 		ScriptEngineManager mgr = new ScriptEngineManager();
 		ScriptEngine engine = mgr.getEngineByName("JavaScript");
+		
+		//double
 
 		switch(toSolveFor) {
 		case 'x':
+			double yOffset = input;
 			//gonna have to use newtons method or something
 			//solve for x given y
-			return 1066;
+			//use random value
+			//find slope fo func at random value
+			//go to where that slope has x intercept
+			//use that as neww guess
+			//repeat  until guess is > 0.00000 accuracy to 0.0
+			double randGuess = Math.random()* 10;
+			double fGuess = calculateValues(randGuess, 'y');
+			//used to approximate slope at guess
+			double guessP1 = calculateValues(randGuess + .01, 'y');
+			double guessP2 = calculateValues(randGuess - .01, 'y');
+			//slope = rise / run = (guessP1 - guessP2) / (.02)
+			double slope = (guessP1 - guessP2) / (.02);
+			//System.out.println("Slope: " + slope);
+			//System.out.println("x(randGuess): " + randGuess);
+			//System.out.println("y(fGuess): " + fGuess/slope);
+			double x2nd = randGuess - ((fGuess - yOffset)/slope);
+			
+			//double scale = Math.pow(10, 6);
+		    //x2nd = Math.round(x2nd * scale) / scale;
+			
+			System.out.println("x: " + randGuess + "\nY: " + fGuess );
+			//if (calculateValues(x2nd, 'y') >= 0 && 
+			//		calculateValues(x2nd, 'y') <= .000001) {
+			//	return x2nd;
+			//}
+			double x1 = x2nd;
+			int runs  = 0;
+			double scale = Math.pow(10, 5);
+			while(!(calculateValues(x1, 'y') >= 0 + yOffset && 
+					calculateValues(x1, 'y') <= .0000001 + yOffset) && runs < 25) {
+				//keep doing newt meth
+				double y0 = calculateValues(x1, 'y');
+				//used to approximate slope at guess
+				double y1 = calculateValues(x1 + .01, 'y');
+				double y2 = calculateValues(x1 - .01, 'y');
+				//slope = rise / run = (guessP1 - guessP2) / (.02)
+				slope = (y1 - y2) / (.02);
+				//System.out.println("Slope: " + slope);
+				//System.out.println("x(randGuess): " + randGuess);
+				//System.out.println("y(fGuess): " + fGuess/slope);
+				x1 = x1 - ((y0 - yOffset)/slope);
+				System.out.println("\nYoff(Slope): " + yOffset + "(" + slope + ")" + "\nRuns: " + runs + "\nReturn: " + x1);
+				//System.out.println("Yoff: " + yOffset);
+				runs++;
+			}
+
+		    x1 = Math.round(x1 * scale) / scale;
+			System.out.println("\nYoff: " + yOffset + "\nRuns: " + runs + "\nReturn: " + x1);
+			return x1;
+			
+			
+			
+			
+			//return 1066;
 		case 'y':
 			//solve for y given x
 			String temp = this.getEquation();
 			temp = temp.replace("x", String.valueOf(input));
-			System.out.println(temp);
+			//System.out.println(temp);
 			String val = engine.eval(temp).toString();
 			return Double.valueOf(val);
 		}
@@ -102,19 +159,16 @@ public class Function {
 	
 	
 	public void setFunction(String input) {
-		rawFunction = input;
+		userInput = input;
 	}
 	
 	public void setXInt(double input) {
-		xInt = input;
+		xInt[0] = input;
 	}
 	
-	public void setYInt(double input) {
-		yInt = input;
-	}
 	
 	public String getFunction() {
-		return rawFunction;
+		return userInput;
 	}
 	
 	public String getEquation() {
@@ -122,11 +176,8 @@ public class Function {
 	}
 	
 	public double getXInt() {
-		return xInt;
+		return xInt[0];
 	}
 	
-	public double getYInt() {
-		return yInt;
-	}	
 
 }

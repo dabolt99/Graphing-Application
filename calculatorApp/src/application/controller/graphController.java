@@ -44,13 +44,14 @@ public class graphController {
     Function func;
     //just a prototype for getting the users input function and then doing sum with it
     @FXML
-    void updateGraph(MouseEvent event) {
+    void updateGraph(MouseEvent event) throws ScriptException {
     	txtDeleteMe.setText(txtFuncF.getText());
-    	func.setFunction(txtFuncF.getText());
+    	func = new Function(txtFuncF.getText());
+    	//func.setFunction(txtFuncF.getText());
     	
     }
     
-    void initFunc(Function input) {
+    void initFunc(Function input) throws ScriptException {
     	System.out.println("graphController manual initialize");
     	func = input;
     	
@@ -77,7 +78,7 @@ public class graphController {
     }
 
     @FXML
-    void switchFuncInfo(MouseEvent event) throws IOException {
+    void switchFuncInfo(MouseEvent event) throws IOException, ScriptException {
     	
     	//putting the users text into the function obj
         Function func = new Function(txtFuncF.getText());
@@ -100,7 +101,7 @@ public class graphController {
     @FXML
     public void initialize() throws ScriptException {
         System.out.println("graphController sys initialize");
-        func = new Function("Null");
+        //func = new Function("Null");
         
         //ScriptEngineManager mgr = new ScriptEngineManager();
         ///ScriptEngine engine = mgr.getEngineByName("JavaScript");

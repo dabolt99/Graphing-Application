@@ -49,10 +49,11 @@ public class funcInfoController {
     	//not needed
     	//txtXEquals.setText(String.valueOf(func.getXInt()));
     	//txtYEquals.setText(String.valueOf(func.getYInt()));
+    	//func.setXInt(func.calculateValues(, ));
     	
     	txtFunction.setText("f(x) = " + func.getFunction() + "Equ: " + func.getEquation());
     	lblXInter.setText(String.valueOf(func.getXInt()));
-    	lblYInter.setText(String.valueOf(func.getYInt()));
+    	//lblYInter.setText(String.valueOf(func.getYInt()));
     }
     
     //this will handle solving for x given y or y given x
@@ -75,7 +76,7 @@ public class funcInfoController {
     }
 
     @FXML
-    void switchGraph(MouseEvent event) throws IOException {
+    void switchGraph(MouseEvent event) throws IOException, ScriptException {
     	FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("view/graph.fxml"));
     	Parent root = loader.load();
     	
