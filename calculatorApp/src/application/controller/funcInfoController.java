@@ -82,7 +82,7 @@ public class funcInfoController {
     	
     	//calling the manual initialization and giving it Function obj
     	graphController graphController = loader.getController();
-    	graphController.initFunc(func);
+    	graphController.initGraph(func);
     	
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));

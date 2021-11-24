@@ -39,7 +39,7 @@ public class graphController {
     private TextField txtFuncF;
     
     @FXML
-    private LineChart<Double, Double> graph;
+	private LineChart<Double, Double> lineGraph;
     
     Function func;
     //just a prototype for getting the users input function and then doing sum with it
@@ -47,17 +47,21 @@ public class graphController {
     void updateGraph(MouseEvent event) throws ScriptException {
     	txtDeleteMe.setText(txtFuncF.getText());
     	func = new Function(txtFuncF.getText());
-    	//func.setFunction(txtFuncF.getText());
+    	//empty the graph
+    	double range = 25;
+    	lineGraph.getData().clear();
+    	
+    	XYChart.Series<Double, Double> series = new XYChart.Series<Double, Double>();
+    	for (double x = -range; x <= range; x = x + 0.1) {
+    		series.getData().add(new XYChart.Data<Double, Double>(x, func.calculateValues(x, 'y')));
+    	}
+    	lineGraph.getData().add(series);
     	
     }
     
-    void initFunc(Function input) throws ScriptException {
+    void initGraph(Function input) throws ScriptException {
     	System.out.println("graphController manual initialize");
     	func = input;
-    	
-    	//not needed
-    	//txtXEquals.setText(String.valueOf(func.getXInt()));
-    	//txtYEquals.setText(String.valueOf(func.getYInt()));
     	
     	txtFuncF.setText(func.getFunction());
     	//a way to call updateGraph without someone having to click on it
@@ -80,33 +84,30 @@ public class graphController {
     @FXML
     void switchFuncInfo(MouseEvent event) throws IOException, ScriptException {
     	
-    	//putting the users text into the function obj
-        Function func = new Function(txtFuncF.getText());
-    	// also need the x and ys to get calculated
-    	
-    	
-    	FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("view/funcInfo.fxml"));
-    	Parent root = loader.load();
-    	
-    	//calling the manual initialization and giving it Function obj
-    	funcInfoController funcInfoController = loader.getController();
-    	funcInfoController.initFunc(func);
-    	
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
-        
+    	if(txtFuncF.getText().isEmpty()) {
+    		txtFuncF.setText("Enter A Function");
+    	} else {
+    		//putting the users text into the function obj
+            Function func = new Function(txtFuncF.getText());
+        	// also need the x and ys to get calculated
+        	
+        	
+        	FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("view/funcInfo.fxml"));
+        	Parent root = loader.load();
+        	
+        	//calling the manual initialization and giving it Function obj
+        	funcInfoController funcInfoController = loader.getController();
+        	funcInfoController.initFunc(func);
+        	
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+    	}        
     }
     
     @FXML
     public void initialize() throws ScriptException {
-        System.out.println("graphController sys initialize");
-        //func = new Function("Null");
-        
-        //ScriptEngineManager mgr = new ScriptEngineManager();
-        ///ScriptEngine engine = mgr.getEngineByName("JavaScript");
-        //String infix = "3+2*(4+5)";
-        //System.out.println(engine.eval(infix));
+
     }
 
 }

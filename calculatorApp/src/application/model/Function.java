@@ -83,75 +83,49 @@ public class Function {
 		//ScriptEngine created so eval() from javascript can be used to do the math
 		ScriptEngineManager mgr = new ScriptEngineManager();
 		ScriptEngine engine = mgr.getEngineByName("JavaScript");
-		
-		//double
 
 		switch(toSolveFor) {
 		case 'x':
 			double yOffset = input;
-			//gonna have to use newtons method or something
-			//solve for x given y
-			//use random value
-			//find slope fo func at random value
-			//go to where that slope has x intercept
-			//use that as neww guess
-			//repeat  until guess is > 0.00000 accuracy to 0.0
-			double randGuess = Math.random()* 10;
-			double fGuess = calculateValues(randGuess, 'y');
-			//used to approximate slope at guess
-			double guessP1 = calculateValues(randGuess + .01, 'y');
-			double guessP2 = calculateValues(randGuess - .01, 'y');
-			//slope = rise / run = (guessP1 - guessP2) / (.02)
-			double slope = (guessP1 - guessP2) / (.02);
-			//System.out.println("Slope: " + slope);
-			//System.out.println("x(randGuess): " + randGuess);
-			//System.out.println("y(fGuess): " + fGuess/slope);
-			double x2nd = randGuess - ((fGuess - yOffset)/slope);
 			
-			//double scale = Math.pow(10, 6);
-		    //x2nd = Math.round(x2nd * scale) / scale;
+			//steps to newtons method:
+			//	1. make a random x value guess
+			//	2. if incorrect calculate slope at that point
+			//	3. calculate where slope crosses y axis value desired
+			//	4. use that x value as new guess
+			//	5. repeat until degree of accuracy achieved
 			
-			System.out.println("x: " + randGuess + "\nY: " + fGuess );
-			//if (calculateValues(x2nd, 'y') >= 0 && 
-			//		calculateValues(x2nd, 'y') <= .000001) {
-			//	return x2nd;
-			//}
-			double x1 = x2nd;
+			double x2;
 			int runs  = 0;
-			double scale = Math.pow(10, 5);
+			double x1 = Math.random() * 10;
 			while(!(calculateValues(x1, 'y') >= 0 + yOffset && 
-					calculateValues(x1, 'y') <= .0000001 + yOffset) && runs < 25) {
-				//keep doing newt meth
+					calculateValues(x1, 'y') <= .000001 + yOffset) && runs < 100) {
+				
 				double y0 = calculateValues(x1, 'y');
 				//used to approximate slope at guess
 				double y1 = calculateValues(x1 + .01, 'y');
 				double y2 = calculateValues(x1 - .01, 'y');
 				//slope = rise / run = (guessP1 - guessP2) / (.02)
-				slope = (y1 - y2) / (.02);
-				//System.out.println("Slope: " + slope);
-				//System.out.println("x(randGuess): " + randGuess);
-				//System.out.println("y(fGuess): " + fGuess/slope);
+				double slope = (y1 - y2) / (.02);
+				//now setting x1 equal to where the slope line crosses desired y axis point
 				x1 = x1 - ((y0 - yOffset)/slope);
-				System.out.println("\nYoff(Slope): " + yOffset + "(" + slope + ")" + "\nRuns: " + runs + "\nReturn: " + x1);
-				//System.out.println("Yoff: " + yOffset);
+				//System.out.println("\nYoff(Slope): " + yOffset + "(" + slope + ")" + "\nRuns: " + runs + "\nReturn: " + x1 + "\n-------------");
 				runs++;
 			}
-
-		    x1 = Math.round(x1 * scale) / scale;
-			System.out.println("\nYoff: " + yOffset + "\nRuns: " + runs + "\nReturn: " + x1);
+			//4 decimal points
+			x1 = Math.round(x1 * 10000) / 10000d;
+			//System.out.println("\nYoff: " + yOffset + "\nRuns: " + runs + "\nReturn: " + x1);
+			System.out.println("runs to calc x from y(" + yOffset + ") = " + runs);
 			return x1;
 			
-			
-			
-			
-			//return 1066;
 		case 'y':
 			//solve for y given x
-			String temp = this.getEquation();
-			temp = temp.replace("x", String.valueOf(input));
-			//System.out.println(temp);
-			String val = engine.eval(temp).toString();
-			return Double.valueOf(val);
+			String equation = this.getEquation();
+			//replacing x with users inputed x val
+			equation = equation.replaceAll("x", String.valueOf(input));
+			Double y = (Double) engine.eval(equation);
+			//System.out.println("Evaluated equ for x = " + input + " return y = " + y);
+			return y;
 		}
 		
 		return -1;
