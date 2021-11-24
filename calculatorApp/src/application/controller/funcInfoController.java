@@ -42,7 +42,7 @@ public class funcInfoController {
     
     Function func;
     
-    void initFunc(Function input) {
+    void initFunc(Function input) throws ScriptException {
     	System.out.println("funcInfoController manual initialize");
     	func = input;
     	
@@ -52,6 +52,7 @@ public class funcInfoController {
     	//func.setXInt(func.calculateValues(, ));
     	
     	txtFunction.setText("f(x) = " + func.getFunction() + "Equ: " + func.getEquation());
+    	func.setXInt(func.calculateValues(0, 'x'));
     	lblXInter.setText(String.valueOf(func.getXInt()));
     	//lblYInter.setText(String.valueOf(func.getYInt()));
     }

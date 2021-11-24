@@ -12,7 +12,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.Axis;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Button;
@@ -39,22 +41,62 @@ public class graphController {
     private TextField txtFuncF;
     
     @FXML
-	private LineChart<Double, Double> lineGraph;
+    private TextField txtMinX;
+    
+    @FXML
+    private TextField txtMaxX;
+    
+    //@FXML
+   // private NumberAxis xAxis ;
+
+    //@FXML
+    //private NumberAxis yAxis ;
+    
+    @FXML
+	private LineChart<Number, Number> lineGraph;
     
     Function func;
     //just a prototype for getting the users input function and then doing sum with it
     @FXML
     void updateGraph(MouseEvent event) throws ScriptException {
-    	txtDeleteMe.setText(txtFuncF.getText());
+ 
     	func = new Function(txtFuncF.getText());
+    	//temporary just to display what the graph is actually calculating on
+       	txtDeleteMe.setText(func.getEquation());
     	//empty the graph
-    	double range = 25;
     	lineGraph.getData().clear();
     	
-    	XYChart.Series<Double, Double> series = new XYChart.Series<Double, Double>();
-    	for (double x = -range; x <= range; x = x + 0.1) {
-    		series.getData().add(new XYChart.Data<Double, Double>(x, func.calculateValues(x, 'y')));
+    	
+    	int minX, maxX;
+    	if(txtMinX.getText().isEmpty()) {
+    		//if coming back from function info set values manually
+    		//will cause error otherwise
+    		minX = -10;
+        	maxX = 10;
+    	} else {
+        	minX = Integer.valueOf(txtMinX.getText());
+        	maxX = Integer.valueOf(txtMaxX.getText());
     	}
+
+    	//setting the x axis bounds
+    	NumberAxis axis = (NumberAxis) lineGraph.getXAxis();
+    	axis.setLowerBound(minX);
+    	axis.setUpperBound(maxX);
+
+    	//setting how many data points to calc
+    	//very intensive as far as time to render
+    	double incVal = .2;
+    	double y;
+    	XYChart.Series<Number, Number> series = new XYChart.Series<Number, Number>();
+    	for (double x = minX - incVal; x <= maxX + incVal; x = x + incVal) {
+    		
+    		y = func.calculateValues(x, 'y');
+    		//plotting a Nan Value or infinite value breaks the graph scaling
+    		if(!Double.isNaN(y) && Double.isFinite(y)) {
+    			series.getData().add(new XYChart.Data<Number, Number>(x, y));
+    		}
+    	}
+    	//dropping the coords into the graph
     	lineGraph.getData().add(series);
     	
     }

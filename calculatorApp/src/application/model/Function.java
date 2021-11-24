@@ -33,7 +33,7 @@ public class Function {
 		formatFunction();
 		
 		//temporary until the logic for calculating is implemented
-		setXInt(calculateValues(0, 'x'));
+		
 
 	}
 	
@@ -119,12 +119,17 @@ public class Function {
 			return x1;
 			
 		case 'y':
+			/*
 			//solve for y given x
 			String equation = this.getEquation();
 			//replacing x with users inputed x val
 			equation = equation.replaceAll("x", String.valueOf(input));
 			Double y = (Double) engine.eval(equation);
 			//System.out.println("Evaluated equ for x = " + input + " return y = " + y);
+			return y;
+			*/
+			Double y = (Double) engine.eval(this.getEquation().replaceAll("x", String.valueOf(input)));
+			System.out.println("Evaluated equ for x = " + input + " return y = " + y);
 			return y;
 		}
 		

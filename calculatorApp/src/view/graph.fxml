@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
@@ -50,11 +49,17 @@
       </Text>
       <LineChart fx:id="lineGraph" layoutX="176.0" layoutY="176.0" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="618.0" prefWidth="618.0" style="-fx-create-symbols: false; -fx-legend-visible: false;">
         <xAxis>
-          <NumberAxis autoRanging="false" lowerBound="-25" side="BOTTOM" tickUnit="1" upperBound="25" />
+          <NumberAxis autoRanging="false" lowerBound="-10" side="BOTTOM" tickUnit="1" upperBound="10" />
         </xAxis>
         <yAxis>
-          <NumberAxis autoRanging="false" lowerBound="-25" side="LEFT" tickUnit="1" upperBound="25" />
+          <NumberAxis autoRanging="true" lowerBound="-10" side="LEFT" tickUnit="1" upperBound="10" />
         </yAxis>
       </LineChart>
+      <TextField layoutX="10.0" layoutY="531.0" prefHeight="31.0" prefWidth="154.0" />
+      <TextField fx:id="txtMinX" layoutX="15.0" layoutY="417.0" prefHeight="31.0" prefWidth="154.0" />
+      <TextField fx:id="txtMaxX" layoutX="10.0" layoutY="485.0" prefHeight="31.0" prefWidth="154.0" />
+      <TextField layoutX="10.0" layoutY="590.0" prefHeight="31.0" prefWidth="154.0" />
+      <Text layoutX="18.0" layoutY="406.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Min x " />
+      <Text layoutX="18.0" layoutY="470.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Max x " />
    </children>
 </AnchorPane>
