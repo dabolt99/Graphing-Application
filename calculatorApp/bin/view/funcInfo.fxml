@@ -9,42 +9,32 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.funcInfoController">
    <children>
-      <Text layoutX="71.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X Intercept:">
+      <Text layoutX="70.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X Intercept:">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text layoutX="72.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Y Intercept:">
+      <Text layoutX="125.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X =">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text layoutX="134.0" layoutY="351.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X =">
+      <Text layoutX="125.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Y =">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text layoutX="134.0" layoutY="401.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Y =">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <TextField fx:id="txtXEquals" layoutX="170.0" layoutY="325.0">
+      <TextField fx:id="txtXEquals" layoutX="161.0" layoutY="221.0">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtYEquals" layoutX="170.0" layoutY="374.0">
+      <TextField fx:id="txtYEquals" layoutX="161.0" layoutY="270.0">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
-      <Label fx:id="lblXInter" layoutX="170.0" layoutY="231.0" text="L">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Label fx:id="lblYInter" layoutX="170.0" layoutY="280.0" text="L">
+      <Label fx:id="lblXInter" layoutX="164.0" layoutY="158.0" text="L">
          <font>
             <Font size="24.0" />
          </font>
@@ -64,6 +54,6 @@
             <Font size="24.0" />
          </font>
       </Text>
-      <Button fx:id="btnSolveVal" layoutX="167.0" layoutY="429.0" mnemonicParsing="false" onMouseClicked="#solveVal" text="Solve for x or y given the other&#10;Leave field to solve for blank" />
+      <Button fx:id="btnSolveVal" layoutX="158.0" layoutY="325.0" mnemonicParsing="false" onMouseClicked="#solveVal" text="Solve&#10;(Leave value to solve blank)" />
    </children>
 </AnchorPane>

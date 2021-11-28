@@ -32,6 +32,19 @@ public class regCalcController {
 
     @FXML
     private Button btnGotoIntro;
+    
+    @FXML
+    private Button btnGotoMatrixCalc;
+    
+    @FXML
+    void switchMatrixCalc(MouseEvent event) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("view/Matrix.fxml"));
+    	Parent root = loader.load();
+    	
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
 
     @FXML
     void switchGraphCalc(MouseEvent event) throws IOException {

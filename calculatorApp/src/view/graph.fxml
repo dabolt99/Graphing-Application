@@ -42,11 +42,6 @@
             <Font size="24.0" />
          </font>
       </Button>
-      <Text fx:id="txtDeleteMe" layoutX="510.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-         <font>
-            <Font size="48.0" />
-         </font>
-      </Text>
       <LineChart fx:id="lineGraph" layoutX="176.0" layoutY="176.0" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="618.0" prefWidth="618.0" style="-fx-create-symbols: false; -fx-legend-visible: false;">
         <xAxis>
           <NumberAxis autoRanging="false" lowerBound="-10" side="BOTTOM" tickUnit="1" upperBound="10" />
@@ -55,11 +50,9 @@
           <NumberAxis autoRanging="true" lowerBound="-10" side="LEFT" tickUnit="1" upperBound="10" />
         </yAxis>
       </LineChart>
-      <TextField layoutX="10.0" layoutY="531.0" prefHeight="31.0" prefWidth="154.0" />
-      <TextField fx:id="txtMinX" layoutX="15.0" layoutY="417.0" prefHeight="31.0" prefWidth="154.0" />
-      <TextField fx:id="txtMaxX" layoutX="10.0" layoutY="485.0" prefHeight="31.0" prefWidth="154.0" />
-      <TextField layoutX="10.0" layoutY="590.0" prefHeight="31.0" prefWidth="154.0" />
-      <Text layoutX="18.0" layoutY="406.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Min x " />
-      <Text layoutX="18.0" layoutY="470.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Max x " />
+      <TextField fx:id="txtMinX" layoutX="15.0" layoutY="338.0" prefHeight="31.0" prefWidth="154.0" />
+      <TextField fx:id="txtMaxX" layoutX="15.0" layoutY="390.0" prefHeight="31.0" prefWidth="154.0" />
+      <Text layoutX="19.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Min x " />
+      <Text layoutX="18.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Max x " />
    </children>
 </AnchorPane>

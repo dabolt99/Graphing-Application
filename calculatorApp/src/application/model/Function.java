@@ -26,20 +26,12 @@ public class Function {
 	
 	//constructor
 	public Function(String input) throws ScriptException{
-		
-		System.out.println("Function constructor called");
-		
 		setFunction(input);
 		formatFunction();
-		
-		//temporary until the logic for calculating is implemented
-		
-
 	}
 	
 	private void formatFunction() {
-		
-		
+
 		equation = userInput;
 		//formats using some regex bits
 		//used to handle nesting of cos ex: 5*cos(5*x+cos(5))
@@ -60,19 +52,16 @@ public class Function {
 		while (equation.matches(".*(?<!Math.)log\\(([^<]*)\\).*")) {
 			equation = equation.replaceAll("(?<!Math.)log\\(([^<]*)\\)", "Math.log($1)");
 		}
-		//figure out math.pow
 		while (equation.matches(".*\\(([^<]*)\\)\\^\\(([^<]*)\\).*")) {
-			System.out.println("mathed pow");
-			equation = equation.replaceAll(".*\\(([^<]*)\\)\\^\\(([^<]*)\\).*", "Math.pow($1, $2)");
+			equation = equation.replaceAll(".*\\(([^<]*)\\)\\^\\(([^<]*)\\)", "Math.pow($1, $2)");
 		}
-		
 		while (equation.matches(".*pi.*")) {
 			equation = equation.replaceAll("pi", "Math.PI");
 		}
 		while (equation.matches(".*e.*")) {
 			equation = equation.replaceAll("e", "Math.E");
 		}
-		System.out.println(equation);
+		System.out.println("Equ: " + equation + "\nIn: " + userInput);
 	}
 	
 	//to be used for user calulating manually will need to have access to the 
@@ -99,7 +88,7 @@ public class Function {
 			int runs  = 0;
 			double x1 = Math.random() * 10;
 			while(!(calculateValues(x1, 'y') >= 0 + yOffset && 
-					calculateValues(x1, 'y') <= .000001 + yOffset) && runs < 100) {
+					calculateValues(x1, 'y') <= .0000001 + yOffset) && runs < 100) {
 				
 				double y0 = calculateValues(x1, 'y');
 				//used to approximate slope at guess
@@ -113,9 +102,9 @@ public class Function {
 				runs++;
 			}
 			//4 decimal points
-			x1 = Math.round(x1 * 10000) / 10000d;
+			x1 = Math.round(x1 * 1000) / 1000d;
 			//System.out.println("\nYoff: " + yOffset + "\nRuns: " + runs + "\nReturn: " + x1);
-			System.out.println("runs to calc x from y(" + yOffset + ") = " + runs);
+			//System.out.println("runs to calc x from y(" + yOffset + ") = " + runs);
 			return x1;
 			
 		case 'y':
@@ -129,7 +118,7 @@ public class Function {
 			return y;
 			*/
 			Double y = (Double) engine.eval(this.getEquation().replaceAll("x", String.valueOf(input)));
-			System.out.println("Evaluated equ for x = " + input + " return y = " + y);
+			//System.out.println("Evaluated equ for x = " + input + " return y = " + y);
 			return y;
 		}
 		
@@ -144,7 +133,6 @@ public class Function {
 	public void setXInt(double input) {
 		xInt[0] = input;
 	}
-	
 	
 	public String getFunction() {
 		return userInput;
