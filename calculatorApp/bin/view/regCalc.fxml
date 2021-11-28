@@ -26,9 +26,9 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <VBox layoutX="354.0" layoutY="187.0" prefHeight="586.0" prefWidth="423.0">
+      <VBox layoutX="354.0" layoutY="187.0" prefHeight="586.0" prefWidth="423.0" style="-fx-background-color: blue; -fx-border-color: black;">
          <children>
-            <StackPane prefHeight="150.0" prefWidth="200.0">
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: gray;">
                <children>
                   <Label fx:id="result" prefHeight="140.0" prefWidth="414.0">
                      <font>
@@ -129,5 +129,10 @@
             </HBox>
          </children>
       </VBox>
+      <Button fx:id="btnGotoMatrixCalc" layoutX="25.0" layoutY="243.0" mnemonicParsing="false" onMouseClicked="#switchMatrixCalc" text="Go to Matrix Calculator">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

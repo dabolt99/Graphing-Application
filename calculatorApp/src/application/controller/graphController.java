@@ -35,9 +35,6 @@ public class graphController {
     private Button btnUpdateGraph;
 
     @FXML
-    private Text txtDeleteMe;
-
-    @FXML
     private TextField txtFuncF;
     
     @FXML
@@ -62,7 +59,6 @@ public class graphController {
  
     	func = new Function(txtFuncF.getText());
     	//temporary just to display what the graph is actually calculating on
-       	txtDeleteMe.setText(func.getEquation());
     	//empty the graph
     	lineGraph.getData().clear();
     	
