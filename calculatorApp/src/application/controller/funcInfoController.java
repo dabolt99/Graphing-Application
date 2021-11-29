@@ -51,7 +51,7 @@ public class funcInfoController {
     	//txtYEquals.setText(String.valueOf(func.getYInt()));
     	//func.setXInt(func.calculateValues(, ));
     	
-    	txtFunction.setText("f(x) = " + func.getFunction() + "Equ: " + func.getEquation());
+    	txtFunction.setText("f(x) = " + func.getFunction());
     	func.setXInt(func.calculateValues(0, 'x'));
     	lblXInter.setText(String.valueOf(func.getXInt()));
     	//lblYInter.setText(String.valueOf(func.getYInt()));
